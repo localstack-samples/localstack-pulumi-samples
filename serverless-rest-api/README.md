@@ -1,14 +1,13 @@
 # Deploying a Serverless REST API using DynamoDB, API Gateway, and Lambda on LocalStack
 
-In this example, we will demonstrate how to deploy a Serverless REST API using DynamoDB, API Gateway, and Lambda on LocalStack. With the help of the Pulumi Node.js SDK, we will declaratively provision AWS resources & infrastructure locally on LocalStack and on the real AWS cloud.
+In this example, we will demonstrate how to deploy a Serverless REST API using DynamoDB, API Gateway, and Lambda on LocalStack. With the help of the Pulumi Node.js SDK, we will declaratively provision AWS resources & infrastructure locally on LocalStack.
 
 ## Prerequisites
 
 - LocalStack
-- Pulumi & `pulumilocal` CLI
+- Pulumi & [`pulumilocal`](https://github.com/localstack/pulumi-local) CLI
 - Docker
 - `awslocal` CLI
-- Pulumi
 
 ## Starting up
 
