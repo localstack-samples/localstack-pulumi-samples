@@ -8,7 +8,6 @@ In this example, we will demonstrate how to deploy a [simple S3 Static Website](
 - Pulumi & `pulumilocal` CLI
 - Docker
 - `awslocal` CLI
-- Pulumi
 
 ## Starting up
 
@@ -27,7 +26,7 @@ pulumilocal stack init website-testing
 Set the AWS region to `us-east-1` via:
 
 ```bash
-pulumi config set aws:region us-east-1
+pulumilocal config set aws:region us-east-1
 ```
 
 ## Installing dependencies
