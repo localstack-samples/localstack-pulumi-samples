@@ -20,13 +20,13 @@ localstack start -d
 Create a new Pulumi stack via:
 
 ```bash
-pulumilocal stack init python-eks-testing
+pulumilocal stack init python-appsync-testing 
 ```
 
 Set the AWS region to `us-east-1` via:
 
 ```bash
-pulumi config set aws:region us-east-1
+pulumilocal config set aws:region us-east-1
 ```
 
 ## Deploying the stack
@@ -50,7 +50,13 @@ Resources:
 Duration: 20s
 ```
 
-You can retrieve the GraphQL endpoint API key via the [AppSync Resource Browser](https://app.localstack.cloud/resources/appsync) on the LocalStack Web Application. You can test the deployed GraphQL endpoint via:
+You can retrieve the GraphQL endpoint API key via the [AppSync Resource Browser](https://app.localstack.cloud/resources/appsync) on the LocalStack Web Application. Alternatively, you can retrieve it via the `awslocal` CLI:
+
+```bash
+awslocal appsync list-api-keys --api-id <API_ID>
+```
+
+You can test the deployed GraphQL endpoint via:
 
 ```bash
 curl -XPOST -H "Content-Type:application/graphql" \
