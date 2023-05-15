@@ -5,7 +5,7 @@ In this example, we will demonstrate how to deploy an AWS EKS cluster using Pulu
 ## Prerequisites
 
 - LocalStack
-- Pulumi & `pulumilocal` CLI
+- Pulumi & [`pulumilocal`](https://github.com/localstack/pulumi-local) CLI
 - Docker
 - `awslocal` CLI
 - `kubectl`
@@ -53,7 +53,7 @@ awslocal eks update-kubeconfig --name <CLUSTER_NAME>
 kubectl get nodes
 ```
 
-Replace `<CLUSTER_NAME>` with the name of your EKS cluster.
+Replace `<CLUSTER_NAME>` with the name of your EKS cluster. For further details, see the [LocalStack EKS documentation](https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service/).
 
 ## License
 
