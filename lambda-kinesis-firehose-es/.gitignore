@@ -1,0 +1,4 @@
+*.pyc
+venv/
+Pulumi.*.yaml
+package-lock.json
