@@ -1,5 +1,8 @@
 # Building Lambda Layers with Pulumi on LocalStack
 
+![LocalStack Pro](https://img.shields.io/badge/LocalStack-Pro-blue)
+![Integration Pulumi](https://img.shields.io/badge/Integration-Pulumi-orange)
+
 This example shows how to build a Lambda Layer using Pulumi and deploy it to LocalStack.
 
 ## Prerequisites

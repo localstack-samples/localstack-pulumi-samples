@@ -1,5 +1,8 @@
 # Deploying a S3 Static Website using Pulumi on LocalStack
 
+![LocalStack Community](https://img.shields.io/badge/LocalStack-Community-green)
+![Integration Pulumi](https://img.shields.io/badge/Integration-Pulumi-orange)
+
 In this example, we will demonstrate how to deploy a [simple S3 Static Website](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) using Pulumi on LocalStack. With the help of the Pulumi Node.js SDK, we will declaratively provision AWS resources & infrastructure locally on LocalStack and on the real AWS cloud.
 
 ## Prerequisites
