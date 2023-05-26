@@ -1,6 +1,6 @@
 # Integrating Lambda, Kinesis, Firehose, Elasticsearch using Pulumi
 
-This project is a simple example of how to integrate AWS Lambda, Kinesis, Firehose and Elasticsearch using Pulumi. With the help of the Pulumi Node.js SDK, we will declaratively provision AWS resources & infrastructure locally on LocalStack and on the real AWS cloud.
+This project is a simple example of how to integrate AWS Lambda, Kinesis, Firehose and Elasticsearch using Pulumi.
 
 ## Prerequisites
 
