@@ -50,10 +50,13 @@ Run the following command to send a message to the SQS queue:
 
 ```bash
 awslocal sqs send-message --queue-url <QUEUE_URL> --message-body test
-awslocal s3 ls s3://testbucket-<BUCKET_ID>
 ```
 
-You will find a `lastEvent.json` file which contains the message sent to the SQS queue.
+You then will be able to find a `lastEvent.json` file which contains the message sent to the SQS queue by running the following command:
+
+```bash
+awslocal s3 ls <BUCKET_URL>
+```
 
 ## License
 
