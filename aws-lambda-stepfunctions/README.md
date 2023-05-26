@@ -48,7 +48,7 @@ awslocal stepfunctions list-state-machines
 To run the State Machine, execute the following command:
 
 ```bash
-awslocal stepfunctions start-execution --state-machine-arn <STATE_MACHINE_ARN>
+awslocal stepfunctions start-execution --state-machine-arn '<STATE_MACHINE_ARN>'
 ```
 
 Open the LocalStack logs to see the State Machine starting up:
