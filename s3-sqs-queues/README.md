@@ -1,5 +1,8 @@
 # Store SQS Messages in S3 Buckets
 
+![LocalStack Community](https://img.shields.io/badge/LocalStack-Community-green)
+![Integration Pulumi](https://img.shields.io/badge/Integration-Pulumi-orange)
+
 In this example, we will demonstrate how to store SQS messages in S3 buckets. We will use LocalStack to emulate AWS services locally with Pulumi's Node.js SDK.
 
 ## Prerequisites

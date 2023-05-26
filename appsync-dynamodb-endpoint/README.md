@@ -1,5 +1,8 @@
 # GraphQL Endpoint in AppSync & DynamoDB
 
+![LocalStack Pro](https://img.shields.io/badge/LocalStack-Pro-blue)
+![Integration Pulumi](https://img.shields.io/badge/Integration-Pulumi-orange)
+
 In this example, we will demonstrate how to deploy a GraphQL endpoint in AppSync & DynamoDB, with an endpoint that contains one query and one mutation that get and put items. With the help of the Pulumi Node.js SDK, we will declaratively provision AWS resources & infrastructure locally on LocalStack and on the real AWS cloud.
 
 ## Prerequisites
