@@ -1,0 +1,3 @@
+name: sns-sqs
+description: SNS, SQS, and Lambda integration
+runtime: nodejs
