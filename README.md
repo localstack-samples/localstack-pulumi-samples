@@ -35,6 +35,7 @@ Some of the samples require LocalStack Pro features. Each directory will have a 
 | [S3 SQS Queues](https://github.com/localstack/localstack-pulumi-samples/tree/master/s3-sqs-queues)                             | Sample for storing messages from Amazon Simple Queue Service (SQS) to Amazon S3          |
 | [S3 Static Website](https://github.com/localstack/localstack-pulumi-samples/tree/master/s3-static-website)                     | Creating a static website hosted on Amazon S3 using Pulumi                                  |
 | [Serverless REST API](https://github.com/localstack/localstack-pulumi-samples/tree/master/serverless-rest-api)                 | Sample for setting up a serverless REST API on AWS                                      |
+| [SNS, SQS, and Lambda integration](https://github.com/localstack/localstack-pulumi-samples/tree/master/sns-sqs-subscription-lambda-trigger) | Sample for setting up a SNS topic, SQS queue, and Lambda function to trigger on SNS messages |
 
 ## Checking out a single sample
 

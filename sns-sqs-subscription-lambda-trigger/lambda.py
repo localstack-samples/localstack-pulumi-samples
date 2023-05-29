@@ -6,8 +6,8 @@ import boto3
 def handler(event, context):
     print(event)
 
-    # FIXME: here i'm assuming that localstack runs on the host and there's a docker network
-    sqs = boto3.client("sqs", endpoint_url=os.getenv("BOTO_ENDPOINT_URL"))
+    endpoint_url = f"http://{os.getenv("LOCALSTACK_HOSTNAME")}:{os.getenv("EDGE_PORT")}"
+    sqs = boto3.client("sqs", endpoint_url=endpoint_url)
 
     queue_url = os.environ['LAMBDA_RESULT_QUEUE']
     print("sending s3 message to", queue_url)
