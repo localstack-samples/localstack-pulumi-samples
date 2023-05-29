@@ -6,7 +6,7 @@ The basic pipeline is:
 
 - Publish -> SNS Topic (via user input)
 - SNS Topic -> SQS queue (via SNS subscription)
-- SQS Queue -> Lambda invokation (Lambda event source mapping)
+- SQS Queue -> Lambda invocation (Lambda event source mapping)
 - Lambda -> SQS (via AWS SDK `boto3` from within a Lambda)
 - SQS -> Receive message (via user input)
 
