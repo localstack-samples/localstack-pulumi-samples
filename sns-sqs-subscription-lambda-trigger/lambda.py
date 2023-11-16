@@ -1,12 +1,13 @@
-import os
 import json
+import os
 
 import boto3
+
 
 def handler(event, context):
     print(event)
 
-    endpoint_url = f"http://{os.getenv("LOCALSTACK_HOSTNAME")}:{os.getenv("EDGE_PORT")}"
+    endpoint_url = os.environ["AWS_ENDPOINT_URL"]
     sqs = boto3.client("sqs", endpoint_url=endpoint_url)
 
     queue_url = os.environ['LAMBDA_RESULT_QUEUE']
