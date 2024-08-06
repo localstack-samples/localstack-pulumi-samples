@@ -20,7 +20,7 @@ If a sample project requires additional tools, it will be mentioned in the `READ
 
 ## Configuration
 
-Some of the samples require LocalStack Pro features. Each directory will have a Markdown badge indicating whether the sample requires LocalStack Pro or not. If you are leveraging a LocalStack Pro sample, make sure to properly configure the `LOCALSTACK_API_KEY` environment variable. You can find your API key in the [LocalStack Pro dashboard](https://app.localstack.cloud/account/apikeys) and you can refer to our [API key documentation](https://docs.localstack.cloud/getting-started/api-key/) for more details.
+Some of the samples require LocalStack Pro features. Each directory will have a Markdown badge indicating whether the sample requires LocalStack Pro or not. If you are leveraging a LocalStack Pro sample, make sure to properly configure the `LOCALSTACK_AUTH_TOKEN` environment variable. You can find your Auth Token in the [LocalStack Web Application](https://app.localstack.cloud/workspace/auth-token) and you can refer to our [Auth token documentation](https://docs.localstack.cloud/getting-started/auth-token/) for more details.
 
 ## Outline
 
