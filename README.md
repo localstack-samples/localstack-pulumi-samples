@@ -26,7 +26,7 @@ Some of the samples require LocalStack Pro features. Each directory will have a 
 
 | Sample Name                                                     | Description                                                                         |
 |-----------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| [AppSync DynamoDB Endpoint](https://github.com/localstack/localstack-pulumi-samples/tree/master/appsync-dynamodb-endpoint)       | Sample demonstrating a GraphQL endpoint in AppSync with DynamoDB integration         |
+| [AppSync DynamoDB Endpoint](https://github.com/localstack/localstack-pulumi-samples/tree/master/appsync-dynamodb)       | Sample demonstrating a GraphQL endpoint in AppSync with DynamoDB integration         |
 | [AWS API Gateway Auth0](https://github.com/localstack/localstack-pulumi-samples/tree/master/aws-apigateway-auth0)                 | Integration of AWS API Gateway with Auth0 for secure authentication and authorization                          |
 | [AWS Lambda StepFunctions](https://github.com/localstack/localstack-pulumi-samples/tree/master/aws-lambda-stepfunctions)         | Sample demonstrating the implementation of Step Functions for orchestrating AWS Lambda functions |
 | [Elastic Kubernetes Service](https://github.com/localstack/localstack-pulumi-samples/tree/master/elastic-kubernetes-service)   | Sample for provisioning and configuring an Elastic Kubernetes Service (EKS) cluster           |
