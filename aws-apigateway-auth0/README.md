@@ -1,6 +1,14 @@
 # AWS APIgateway Auth0
 
-This sample demonstrates AWS service emulation with Pulumi and LocalStack.
+This sample deploys an API Gateway REST endpoint protected by a custom Lambda authorizer.
+
+It creates:
+
+- an API endpoint at `/hello`
+- a Lambda-backed request authorizer
+- a protected route that returns a simple HTML response when authorization succeeds
+
+The project is based on an Auth0-style custom authorizer flow and is useful for local testing of token-based API access patterns.
 
 ## Prerequisites
 
@@ -29,3 +37,5 @@ pulumilocal stack init dev
 pulumilocal config set aws:region us-east-1
 pulumilocal up
 ```
+
+After deployment, run `pulumilocal stack output url` to get the API URL and test it with an `Authorization` header expected by the authorizer logic.

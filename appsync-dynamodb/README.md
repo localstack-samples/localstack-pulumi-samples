@@ -1,6 +1,13 @@
 # AppSync Dynamodb
 
-This sample demonstrates AWS service emulation with Pulumi and LocalStack.
+This sample provisions a GraphQL API on AppSync backed by DynamoDB.
+
+It creates:
+
+- a DynamoDB table named `tenants`
+- an AppSync GraphQL API with API key auth
+- a `Mutation.addTenant(id, name)` resolver to write tenant records
+- a `Query.getTenantById(id)` resolver to read tenant records
 
 ## Prerequisites
 
@@ -29,3 +36,5 @@ pulumilocal stack init dev
 pulumilocal config set aws:region us-east-1
 pulumilocal up
 ```
+
+After deployment, use `pulumilocal stack output` to get the GraphQL endpoint and API key, then run GraphQL queries against the API.

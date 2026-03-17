@@ -1,6 +1,5 @@
 # Integrating Lambda, Kinesis, Firehose, Elasticsearch using Pulumi
 
-![Integration Pulumi](https://img.shields.io/badge/Integration-Pulumi-orange)
 
 This project is a simple example of how to integrate AWS Lambda, Kinesis, Firehose and Elasticsearch using Pulumi.
 

@@ -1,6 +1,5 @@
 # Deploying a State Machine using Step Functions & Lambda on LocalStack
 
-![Integration Pulumi](https://img.shields.io/badge/Integration-Pulumi-orange)
 
 In this example, we will demonstrate how to deploy a State Machine using Step Functions & Lambda on LocalStack. With the help of the Pulumi Python SDK, we will declaratively provision AWS resources & infrastructure locally on LocalStack and on the real AWS cloud.
 
