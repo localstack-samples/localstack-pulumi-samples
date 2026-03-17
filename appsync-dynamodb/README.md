@@ -1,8 +1,6 @@
-# Building Lambda Layers with Pulumi on LocalStack
+# AppSync Dynamodb
 
-![Integration Pulumi](https://img.shields.io/badge/Integration-Pulumi-orange)
-
-This example shows how to build a Lambda Layer using Pulumi and deploy it to LocalStack.
+This sample demonstrates AWS service emulation with Pulumi and LocalStack.
 
 ## Prerequisites
 
@@ -23,35 +21,11 @@ localstack start -d
 localstack wait -t 30
 ```
 
-## Initialize Pulumi Stack
+## Run the Sample
 
 ```bash
-pulumilocal stack init lambda-layers-localstack
+pip install -r requirements.txt
+pulumilocal stack init dev
 pulumilocal config set aws:region us-east-1
-```
-
-## Deploying the stack
-
-To preview and deploy the stack, run:
-
-```bash
 pulumilocal up
 ```
-
-The following output should be displayed:
-
-```bash
-Outputs:
-  + layerArn : "arn:aws:lambda:us-east-1:000000000000:layer:lambda_layer_name:1"
-  + layerSize: 236
-```
-
-You can list the Lambda Layers via:
-
-```bash
-awslocal lambda list-layers
-```
-
-## License
-
-This code is available under the Apache 2.0 license.
