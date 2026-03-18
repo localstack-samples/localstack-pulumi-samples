@@ -11,6 +11,7 @@ In this example, we will demonstrate how to deploy an AWS EKS cluster using Pulu
 - [`awslocal` CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/)
 - [Pulumi](https://www.pulumi.com/docs/get-started/install/)
 - [`pulumilocal` CLI](https://github.com/localstack/pulumi-local)
+- `kubectl`
 - `make` and `jq`
 
 ## Start LocalStack
