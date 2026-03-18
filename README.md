@@ -1,57 +1,65 @@
-# LocalStack Pulumi Examples
-
-![LocalStack Community](https://img.shields.io/badge/LocalStack-Community-green)
-![LocalStack Pro](https://img.shields.io/badge/LocalStack-Pro-blue)
-![Integration Pulumi](https://img.shields.io/badge/Integration-Pulumi-orange)
+# LocalStack Pulumi Samples
 
 This repository contains sample projects that can be deployed on your local machine using [LocalStack](https://localstack.cloud/).
 
-Each example in the repository is self-contained and can be deployed individually using Pulumi & LocalStack on your local machine or in a CI/CD pipeline. The directory names are self-explanatory and each directory contains a `README.md` file with instructions on how to deploy the example.
+Each example in the repository is self-contained and can be deployed individually using Pulumi and LocalStack. The directory names are self-explanatory and each directory contains a `README.md` with sample-specific instructions.
 
 ## Prerequisites
 
-* [LocalStack](https://localstack.cloud/)
-* [Docker](https://docs.docker.com/get-docker/)
-* [`awslocal` CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/)
-* [Pulumi](https://www.pulumi.com/docs/get-started/install/)
-* `make` & `jq`
-
-If a sample project requires additional tools, it will be mentioned in the `README.md` file of the project.
+- A valid [LocalStack for AWS license](https://localstack.cloud/pricing). Your license provides a [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/).
+- [Docker](https://docs.docker.com/get-docker/)
+- [`localstack` CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)
+- [`awslocal` CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/)
+- [Pulumi](https://www.pulumi.com/docs/get-started/install/)
+- [`pulumilocal` CLI](https://github.com/localstack/pulumi-local)
+- `make` and `jq`
 
 ## Configuration
 
-Some of the samples require LocalStack Pro features. Each directory will have a Markdown badge indicating whether the sample requires LocalStack Pro or not. If you are leveraging a LocalStack Pro sample, make sure to properly configure the `LOCALSTACK_AUTH_TOKEN` environment variable. You can find your Auth Token in the [LocalStack Web Application](https://app.localstack.cloud/workspace/auth-token) and you can refer to our [Auth token documentation](https://docs.localstack.cloud/getting-started/auth-token/) for more details.
+Set your auth token before running any sample:
+
+```bash
+export LOCALSTACK_AUTH_TOKEN=<your-auth-token>
+```
+
+Alternatively, use the LocalStack CLI:
+
+```bash
+localstack auth set-token <your-auth-token>
+```
+
+You can find your auth token in the [LocalStack Web Application](https://app.localstack.cloud/workspace/auth-token).
 
 ## Outline
 
-| Sample Name                                                     | Description                                                                         |
-|-----------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| [AppSync DynamoDB Endpoint](https://github.com/localstack/localstack-pulumi-samples/tree/master/appsync-dynamodb)       | Sample demonstrating a GraphQL endpoint in AppSync with DynamoDB integration         |
-| [AWS API Gateway Auth0](https://github.com/localstack/localstack-pulumi-samples/tree/master/aws-apigateway-auth0)                 | Integration of AWS API Gateway with Auth0 for secure authentication and authorization                          |
-| [AWS Lambda StepFunctions](https://github.com/localstack/localstack-pulumi-samples/tree/master/aws-lambda-stepfunctions)         | Sample demonstrating the implementation of Step Functions for orchestrating AWS Lambda functions |
-| [Elastic Kubernetes Service](https://github.com/localstack/localstack-pulumi-samples/tree/master/elastic-kubernetes-service)   | Sample for provisioning and configuring an Elastic Kubernetes Service (EKS) cluster           |
-| [Lambda Kinesis Firehose ES](https://github.com/localstack/localstack-pulumi-samples/tree/master/lambda-kinesis-firehose-es)     | Sample showcasing the integration of Lambda, Kinesis, Firehose, and Elasticsearch          |
-| [Lambda Layers](https://github.com/localstack/localstack-pulumi-samples/tree/master/lambda-layers)                             | Sample demonstrating the usage of Lambda Layers to manage shared code and dependencies          |
-| [S3 SQS Queues](https://github.com/localstack/localstack-pulumi-samples/tree/master/s3-sqs-queues)                             | Sample for storing messages from Amazon Simple Queue Service (SQS) to Amazon S3          |
-| [S3 Static Website](https://github.com/localstack/localstack-pulumi-samples/tree/master/s3-static-website)                     | Creating a static website hosted on Amazon S3 using Pulumi                                  |
-| [Serverless REST API](https://github.com/localstack/localstack-pulumi-samples/tree/master/serverless-rest-api)                 | Sample for setting up a serverless REST API on AWS                                      |
-| [SNS, SQS, and Lambda integration](https://github.com/localstack/localstack-pulumi-samples/tree/master/sns-sqs-subscription-lambda-trigger) | Sample for setting up a SNS topic, SQS queue, and Lambda function to trigger on SNS messages |
+| Sample Name | Description |
+|---|---|
+| [AppSync DynamoDB Endpoint](appsync-dynamodb) | GraphQL endpoint in AppSync with DynamoDB integration |
+| [AWS API Gateway Auth0](aws-apigateway-auth0) | API Gateway integration with Auth0 for authentication and authorization |
+| [AWS Lambda StepFunctions](aws-lambda-stepfunctions) | Step Functions orchestration with Lambda functions |
+| [Elastic Kubernetes Service](elastic-kubernetes-service) | Provisioning and configuring an EKS cluster |
+| [Lambda Kinesis Firehose ES](lambda-kinesis-firehose-es) | Lambda, Kinesis, Firehose, and Elasticsearch integration |
+| [Lambda Layers](lambda-layers) | Lambda Layers for shared code and dependencies |
+| [S3 SQS Queues](s3-sqs-queues) | Store SQS message data in S3 |
+| [S3 Static Website](s3-static-website) | Static website hosting on S3 using Pulumi |
+| [Serverless REST API](serverless-rest-api) | Serverless REST API using AWS managed services |
+| [SNS, SQS, and Lambda integration](sns-sqs-subscription-lambda-trigger) | SNS topic + SQS queue + Lambda event flow |
 
-## Checking out a single sample
+## Checking Out A Single Sample
 
-To check out a single sample, you can use the following commands:
+To check out only one sample directory:
 
 ```bash
 mkdir localstack-pulumi-samples && cd localstack-pulumi-samples
 git init
-git remote add origin -f git@github.com:localstack/localstack-pulumi-samples.git
+git remote add origin -f git@github.com:localstack-samples/localstack-pulumi-samples.git
 git config core.sparseCheckout true
 echo <LOCALSTACK_SAMPLE_DIRECTORY_NAME> >> .git/info/sparse-checkout
 git pull origin master
 ```
 
-The above commands use `sparse-checkout` to only pull the sample you are interested in.
+The commands above use sparse checkout to pull only the sample you need.
 
 ## License
 
-This code is available under the Apache 2.0 license.
+This code is available under Apache License 2.0.

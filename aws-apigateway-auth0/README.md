@@ -1,7 +1,14 @@
-# Building Lambda Layers with Pulumi on LocalStack
+# AWS APIgateway Auth0
 
+This sample deploys an API Gateway REST endpoint protected by a custom Lambda authorizer.
 
-This example shows how to build a Lambda Layer using Pulumi and deploy it to LocalStack.
+It creates:
+
+- an API endpoint at `/hello`
+- a Lambda-backed request authorizer
+- a protected route that returns a simple HTML response when authorization succeeds
+
+The project is based on an Auth0-style custom authorizer flow and is useful for local testing of token-based API access patterns.
 
 ## Prerequisites
 
@@ -22,35 +29,13 @@ localstack start -d
 localstack wait -t 30
 ```
 
-## Initialize Pulumi Stack
+## Run the Sample
 
 ```bash
-pulumilocal stack init lambda-layers-localstack
+npm install
+pulumilocal stack init dev
 pulumilocal config set aws:region us-east-1
-```
-
-## Deploying the stack
-
-To preview and deploy the stack, run:
-
-```bash
 pulumilocal up
 ```
 
-The following output should be displayed:
-
-```bash
-Outputs:
-  + layerArn : "arn:aws:lambda:us-east-1:000000000000:layer:lambda_layer_name:1"
-  + layerSize: 236
-```
-
-You can list the Lambda Layers via:
-
-```bash
-awslocal lambda list-layers
-```
-
-## License
-
-This code is available under the Apache 2.0 license.
+After deployment, run `pulumilocal stack output url` to get the API URL and test it with an `Authorization` header expected by the authorizer logic.

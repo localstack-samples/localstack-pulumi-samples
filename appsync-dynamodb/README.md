@@ -1,7 +1,13 @@
-# Building Lambda Layers with Pulumi on LocalStack
+# AppSync Dynamodb
 
+This sample provisions a GraphQL API on AppSync backed by DynamoDB.
 
-This example shows how to build a Lambda Layer using Pulumi and deploy it to LocalStack.
+It creates:
+
+- a DynamoDB table named `tenants`
+- an AppSync GraphQL API with API key auth
+- a `Mutation.addTenant(id, name)` resolver to write tenant records
+- a `Query.getTenantById(id)` resolver to read tenant records
 
 ## Prerequisites
 
@@ -22,35 +28,13 @@ localstack start -d
 localstack wait -t 30
 ```
 
-## Initialize Pulumi Stack
+## Run the Sample
 
 ```bash
-pulumilocal stack init lambda-layers-localstack
+pip install -r requirements.txt
+pulumilocal stack init dev
 pulumilocal config set aws:region us-east-1
-```
-
-## Deploying the stack
-
-To preview and deploy the stack, run:
-
-```bash
 pulumilocal up
 ```
 
-The following output should be displayed:
-
-```bash
-Outputs:
-  + layerArn : "arn:aws:lambda:us-east-1:000000000000:layer:lambda_layer_name:1"
-  + layerSize: 236
-```
-
-You can list the Lambda Layers via:
-
-```bash
-awslocal lambda list-layers
-```
-
-## License
-
-This code is available under the Apache 2.0 license.
+After deployment, use `pulumilocal stack output` to get the GraphQL endpoint and API key, then run GraphQL queries against the API.
