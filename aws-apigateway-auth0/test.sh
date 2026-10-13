@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Call /hello with and without tokens and check the Lambda authorizer allows only "Bearer goodToken".
+# awsx maps the ACCESS_DENIED gateway response to 404, so a denied token gets 404, not 403.
 set -euo pipefail
 
 STACK=${STACK:-localstack}
@@ -28,7 +29,7 @@ expect() {
 
 expect "no token" 401 ""
 expect "Bearer goodToken" 200 "Hello world!" -H "Authorization: Bearer goodToken"
-expect "Bearer badToken" 403 "" -H "Authorization: Bearer badToken"
+expect "Bearer badToken" 404 "404 Not found" -H "Authorization: Bearer badToken"
 expect "token without Bearer" 401 "" -H "Authorization: goodToken"
 
 if [ "$failed" != 0 ]; then

@@ -25,6 +25,9 @@ deploy: check
 	mkdir -p .pulumi-state
 	cd $(EXAMPLE) && pulumi stack select --create $(STACK)
 	cd $(EXAMPLE) && pulumi config set aws:region $(AWS_REGION)
+	# pulumilocal skips the account ID lookup by default, which leaves the account ID empty in
+	# ARNs the provider builds itself (SNS topics fail with "'' is not a valid AWS account ID")
+	cd $(EXAMPLE) && pulumi config set aws:skipRequestingAccountId false
 	cd $(EXAMPLE) && pulumilocal up --yes --skip-preview
 
 test: check

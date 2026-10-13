@@ -42,6 +42,6 @@ After deployment, get the API ID from `pulumilocal stack output url` (`https://<
 
 ```bash
 curl -H "Authorization: Bearer goodToken" http://<api-id>.execute-api.localhost.localstack.cloud:4566/stage/hello   # 200, <h1>Hello world!</h1>
-curl -H "Authorization: Bearer badToken" http://<api-id>.execute-api.localhost.localstack.cloud:4566/stage/hello    # 403
+curl -H "Authorization: Bearer badToken" http://<api-id>.execute-api.localhost.localstack.cloud:4566/stage/hello    # 404, awsx maps ACCESS_DENIED to 404
 curl http://<api-id>.execute-api.localhost.localstack.cloud:4566/stage/hello                                        # 401
 ```
