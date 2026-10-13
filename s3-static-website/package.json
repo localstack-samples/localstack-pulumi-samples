@@ -2,8 +2,8 @@
     "name": "s3-static-website-localstack",
     "main": "index.js",
     "dependencies": {
-        "@pulumi/aws": "^5.0.0",
-        "@pulumi/pulumi": "^3.0.0",
-        "mime": "^2.2.2"
+        "@pulumi/aws": "^6.83.0",
+        "@pulumi/pulumi": "^3.200.0",
+        "mime": "^2.6.0"
     }
 }

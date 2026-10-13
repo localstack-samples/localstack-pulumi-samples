@@ -45,11 +45,13 @@ const demoKinesisStream = new aws.kinesis.Stream("demoKinesisStream", {
 });
 
 const demoLambda = new aws.lambda.Function("demoLambda", {
-    code: new pulumi.asset.FileArchive("lambda.zip"),
+    code: new pulumi.asset.AssetArchive({
+        "lambda.py": new pulumi.asset.FileAsset("./lambda.py"),
+    }),
     name: "demolambda",
     role: lambdaRole.arn,
     handler: "lambda.handler",
-    runtime: "python3.9",
+    runtime: "python3.12",
     environment: {
         variables: {
             STREAM_NAME: demoKinesisStream.name,
@@ -70,10 +72,6 @@ const demoSkippedDocsBucket = new aws.s3.BucketV2("demoSkippedDocsBucket", {buck
 const demoFirehoseStream = new aws.kinesis.FirehoseDeliveryStream("demoFirehoseStream", {
     name: "demo-firehose-delivery-stream",
     destination: "elasticsearch",
-    s3Configuration: {
-        roleArn: firehoseRole.arn,
-        bucketArn: demoSkippedDocsBucket.arn,
-    },
     kinesisSourceConfiguration: {
         kinesisStreamArn: demoKinesisStream.arn,
         roleArn: firehoseRole.arn,
@@ -83,5 +81,12 @@ const demoFirehoseStream = new aws.kinesis.FirehoseDeliveryStream("demoFirehoseS
         roleArn: firehoseRole.arn,
         indexName: "test",
         typeName: "test",
+        s3Configuration: {
+            roleArn: firehoseRole.arn,
+            bucketArn: demoSkippedDocsBucket.arn,
+        },
     },
 });
+
+export const functionUrl = demoLambdaUrl.functionUrl;
+export const esEndpoint = demoEsDomain.endpoint;

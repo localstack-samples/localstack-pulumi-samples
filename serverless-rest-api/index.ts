@@ -1,7 +1,7 @@
 // Copyright 2016-2019, Pulumi Corporation.  All rights reserved.
 
 import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx";
+import * as awsx from "@pulumi/awsx/classic";
 
 // Create a mapping from 'route' to a count
 const counterTable = new aws.dynamodb.Table("counterTable", {
@@ -23,23 +23,26 @@ const endpoint = new awsx.apigateway.API("hello-world", {
             const route = event.pathParameters!["route"];
             console.log(`Getting count for '${route}'`);
 
-            const client = new aws.sdk.DynamoDB.DocumentClient();
+            // Node.js 18 and later Lambda runtimes ship the AWS SDK v3, not v2
+            const { DynamoDBClient } = await import("@aws-sdk/client-dynamodb");
+            const { DynamoDBDocumentClient, GetCommand, PutCommand } = await import("@aws-sdk/lib-dynamodb");
+            const client = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
             // get previous value and increment
             // reference outer `counterTable` object
-            const tableData = await client.get({
+            const tableData = await client.send(new GetCommand({
                 TableName: counterTable.name.get(),
                 Key: { id: route },
                 ConsistentRead: true,
-            }).promise();
+            }));
 
             const value = tableData.Item;
             let count = (value && value.count) || 0;
 
-            await client.put({
+            await client.send(new PutCommand({
                 TableName: counterTable.name.get(),
                 Item: { id: route, count: ++count },
-            }).promise();
+            }));
 
             console.log(`Got count ${count} for '${route}'`);
             return {

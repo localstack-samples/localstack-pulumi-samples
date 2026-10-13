@@ -20,17 +20,18 @@ const queue = new aws.sqs.Queue("queue", {
 
 queue.onEvent("subscription", async (event) => {
     console.log("Received: " + JSON.stringify(event, null, 2));
-    const awssdk = await import("aws-sdk");
-    const s3 = new awssdk.S3();
+    // Node.js 18 and later Lambda runtimes ship the AWS SDK v3, not v2
+    const { S3Client, PutObjectCommand } = await import("@aws-sdk/client-s3");
+    const s3 = new S3Client({});
 
     const recordFile = "lastEvent.json";
 
     console.log("Storing sqs message to S3.");
-    await s3.putObject({
+    await s3.send(new PutObjectCommand({
         Bucket: bucket.id.get(),
         Key: recordFile,
         Body: JSON.stringify(event),
-    }).promise();
+    }));
     console.log("Stored sqs message to S3.");
 }, { batchSize: 1 });
 

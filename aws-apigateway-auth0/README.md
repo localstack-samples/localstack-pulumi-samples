@@ -38,4 +38,10 @@ pulumilocal config set aws:region us-east-1
 pulumilocal up
 ```
 
-After deployment, run `pulumilocal stack output url` to get the API URL and test it with an `Authorization` header expected by the authorizer logic.
+After deployment, get the API ID from `pulumilocal stack output url` (`https://<api-id>.execute-api.us-east-1.amazonaws.com/stage/`) and call the route through LocalStack. The authorizer only allows the token `Bearer goodToken`:
+
+```bash
+curl -H "Authorization: Bearer goodToken" http://<api-id>.execute-api.localhost.localstack.cloud:4566/stage/hello   # 200, <h1>Hello world!</h1>
+curl -H "Authorization: Bearer badToken" http://<api-id>.execute-api.localhost.localstack.cloud:4566/stage/hello    # 403
+curl http://<api-id>.execute-api.localhost.localstack.cloud:4566/stage/hello                                        # 401
+```
