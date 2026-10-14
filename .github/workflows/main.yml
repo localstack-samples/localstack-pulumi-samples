@@ -1,0 +1,80 @@
+name: Deploy and test on LocalStack
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  example:
+    name: ${{ matrix.example }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - appsync-dynamodb
+          - aws-apigateway-auth0
+          - aws-lambda-stepfunctions
+          - elastic-kubernetes-service
+          - lambda-kinesis-firehose-es
+          - lambda-layers
+          - s3-sqs-queues
+          - s3-static-website
+          - serverless-rest-api
+          - sns-sqs-subscription-lambda-trigger
+    env:
+      EXAMPLE: ${{ matrix.example }}
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: us-east-1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install the Pulumi CLI
+        uses: pulumi/actions@v6
+
+      - name: Install lstk and pulumilocal
+        run: |
+          npm install -g @localstack/lstk
+          lstk setup aws --force --non-interactive
+          pip install pulumi-local
+
+      - name: Install the example's dependencies
+        run: make install
+
+      - name: Start LocalStack
+        env:
+          LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
+        run: lstk start
+
+      - name: Deploy the example
+        run: make deploy
+
+      - name: Run tests
+        run: make test
+
+      - name: Show LocalStack logs
+        if: failure()
+        run: lstk logs | tail -300

@@ -8,8 +8,8 @@ Each example in the repository is self-contained and can be deployed individuall
 
 - A valid [LocalStack for AWS license](https://localstack.cloud/pricing). Your license provides a [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/).
 - [Docker](https://docs.docker.com/get-docker/)
-- [`localstack` CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)
-- [`awslocal` CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/)
+- [`lstk`](https://docs.localstack.cloud/aws/developer-tools/running-localstack/lstk/) or the [`localstack` CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)
+- [`awslocal` CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/), or `lstk aws`
 - [Pulumi](https://www.pulumi.com/docs/get-started/install/)
 - [`pulumilocal` CLI](https://github.com/localstack/pulumi-local)
 - `make` and `jq`
@@ -29,6 +29,20 @@ localstack auth set-token <your-auth-token>
 ```
 
 You can find your auth token in the [LocalStack Web Application](https://app.localstack.cloud/workspace/auth-token).
+
+## Deploying and testing an example
+
+The `Makefile` deploys one example to LocalStack with a local Pulumi backend and runs its `test.sh`:
+
+```bash
+lstk start
+make install deploy test EXAMPLE=s3-static-website
+make destroy EXAMPLE=s3-static-website
+```
+
+`make deploy` uses the stack `localstack` and stores Pulumi state in `.pulumi-state/`. Each `test.sh` checks the example works the way its README describes, for example that the API counts requests or that a published message reaches the result queue. CI runs every example this way on each pull request.
+
+The test scripts need `lstk`, `jq` and `curl`. The EKS test also needs `kubectl` and the AWS CLI.
 
 ## Outline
 

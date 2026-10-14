@@ -46,12 +46,6 @@ yarn install
 
 ## Deploying the stack
 
-Zip the Lambda function via:
-
-```bash
-zip lambda.zip lambda.py
-```
-
 To preview and deploy the stack, run:
 
 ```bash
@@ -78,8 +72,8 @@ awslocal sns publish \
 You can receive the message from the SQS queue via:
 
 ```bash
-awslocal sqs receive-message --wait-time-seconds 10 --visibility-timeout=0 \
-	--queue=http://localhost:4566/000000000000/lambda-result-queue \
+awslocal sqs receive-message --wait-time-seconds 10 --visibility-timeout 0 \
+	--queue-url "$(pulumilocal stack output resultQueueUrl)"
 ```
 
 ## License

@@ -11,18 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import * as awsx from "@pulumi/awsx";
+import * as awsx from "@pulumi/awsx/classic";
 import * as pulumi from "@pulumi/pulumi";
-
-import * as jwt from "jsonwebtoken";
-import * as jwksClient from "jwks-rsa";
-import * as util from "util";
 
 const config = new pulumi.Config();
 
-const authorizerLambda = async (event: awsx.apigateway.AuthorizerEvent) => {
+const authorizerLambda = async (event: awsx.apigateway.AuthorizerEvent): Promise<awsx.apigateway.AuthorizerResponse> => {
     try {
-				const effect = event.headers?.Authorization === "goodToken" ? "Allow" : "Deny";
+				// A TOKEN authorizer gets the header value in event.authorizationToken, not in event.headers
+				const effect = getToken(event) === "goodToken" ? "Allow" : "Deny";
 				return {
 						principalId: "my-user",
 						policyDocument: {

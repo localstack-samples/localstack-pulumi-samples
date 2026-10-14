@@ -40,8 +40,8 @@ pulumilocal up
 You can fetch the Lambda Function URL & Elasticsearch domain endpoint via:
 
 ```bash
-function_url=$(aws lambda get-function-url-config --function-name demolambda --region us-east-1 | jq -r .FunctionUrl)
-elasticsearch_endpoint=$(aws es describe-elasticsearch-domain --domain-name demo-domain --region us-east-1 | jq -r .DomainStatus.Endpoint)
+function_url=$(pulumilocal stack output functionUrl)
+elasticsearch_endpoint=$(pulumilocal stack output esEndpoint)
 echo "Elasticsearch Endpoint: $elasticsearch_endpoint"
 echo "Function URL: $function_url"
 ```
@@ -50,6 +50,12 @@ You can invoke the function via:
 
 ```bash
 curl $function_url
+```
+
+Each call is written to the Kinesis stream, and Firehose delivers it to the `test` index:
+
+```bash
+curl "http://$elasticsearch_endpoint/test/_search"
 ```
 
 ## Starting a Kibana instance
